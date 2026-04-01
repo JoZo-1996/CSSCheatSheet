@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS für Einsteiger – Nachschlagewerk</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4ff;
+    --bg2: #ffffff;
+    --bg3: #e8eeff;
+    --border: #c8d4f8;
+    --accent: #3b5bdb;
+    --accent2: #1971c2;
+    --accent-glow: rgba(59,91,219,0.08);
+    --text: #1a1a2e;
+    --muted: #5a6580;
+    --green: #2f9e44;
+    --green-bg: #ebfbee;
+    --orange: #e67700;
+    --orange-bg: #fff3bf;
+    --pink: #c2255c;
+    --pink-bg: #fff0f6;
+    --teal: #0c8599;
+    --teal-bg: #e3fafc;
+    --tip-bg: #fff9db;
+    --tip-border: #fab005;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--accent);
+    color: white;
+    padding: 2rem 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(59,91,219,0.3);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  header .subtitle {
+    font-size: 1rem;
+    opacity: 0.85;
+    font-weight: 600;
+  }
+  .level-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
+    color: white;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  /* LAYOUT */
+  main {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 90px;
+    background: var(--bg2);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 12px rgba(59,91,219,0.08);
+  }
+  nav h3 {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 800;
+  }
+  nav a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    transition: all 0.15s;
+    margin-bottom: 2px;
+  }
+  nav a:hover { background: var(--accent-glow); color: var(--accent); }
+
+  /* CONTENT */
+  .content { display: flex; flex-direction: column; gap: 2rem; }
+
+  section {
+    background: var(--bg2);
+    border-radius: 14px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(59,91,219,0.06);
+  }
+
+  .section-header {
+    background: var(--accent);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-num {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: white;
+  }
+  .section-header .subtitle {
+    margin-left: auto;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .section-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    background: var(--bg3);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(59,91,219,0.12); }
+  .card h4 {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    line-height: 1.55;
+  }
+  .card p strong { color: var(--text); }
+
+  /* TIP BOX */
+  .tip {
+    background: var(--tip-bg);
+    border: 2px solid var(--tip-border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.9rem;
+    color: #5a3e00;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .tip strong { color: #7a4f00; }
+
+  /* INFO COLORS */
+  .info-green { background: var(--green-bg); border: 2px solid #a9e34b; border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.9rem; color: #1a4a1a; }
+  .info-pink { background: var(--pink-bg); border: 2px solid #f783ac; border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.9rem; color: #6a0030; }
+  .info-teal { background: var(--teal-bg); border: 2px solid #66d9e8; border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.9rem; color: #0a4a55; }
+
+  /* CODE */
+  pre, code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.82rem;
+  }
+  pre {
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    line-height: 1.75;
+    margin-top: 0.5rem;
+  }
+  code { color: #cdd6f4; }
+
+  /* Syntax colors */
+  .prop  { color: #89b4fa; }
+  .val   { color: #a6e3a1; }
+  .sel   { color: #f9e2af; }
+  .cmt   { color: #6c7086; font-style: italic; }
+  .num   { color: #cba6f7; }
+  .kw    { color: #f38ba8; }
+  .fn    { color: #89dceb; }
+
+  /* TABLES */
+  .prop-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+  }
+  .prop-table th {
+    background: var(--accent);
+    color: white;
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .prop-table td {
+    padding: 0.55rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+    background: var(--bg2);
+  }
+  .prop-table tr:last-child td { border-bottom: none; }
+  .prop-table tr:hover td { background: var(--accent-glow); }
+  .prop-table td:first-child {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .prop-table td:nth-child(2) {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    color: var(--green);
+  }
+  .prop-table td.label {
+    background: var(--bg3);
+    font-weight: 800;
+    color: var(--muted);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* BOX MODEL VISUAL */
+  .boxmodel-wrap { text-align: center; padding: 0.5rem; }
+  .bm-margin { background: #fff3bf; border: 2px dashed #e67700; border-radius: 8px; padding: 1rem; color: #7a4400; font-weight: 700; font-size: 0.8rem; }
+  .bm-border { background: #ffe3e3; border: 3px solid #c92a2a; border-radius: 6px; padding: 0.8rem; margin-top: 0.5rem; color: #7a1010; font-weight: 700; font-size: 0.8rem; }
+  .bm-padding { background: #ebfbee; border: 2px dashed #2f9e44; border-radius: 4px; padding: 0.8rem; margin-top: 0.5rem; color: #1a5c28; font-weight: 700; font-size: 0.8rem; }
+  .bm-content { background: #dbe4ff; border: 2px solid #3b5bdb; border-radius: 4px; padding: 0.6rem 2rem; margin-top: 0.5rem; color: #1a3bdb; font-weight: 800; font-size: 0.88rem; display: inline-block; }
+
+  /* FLEX DEMO */
+  .flex-demo { display: flex; gap: 6px; background: var(--bg3); padding: 0.6rem; border-radius: 8px; border: 2px dashed var(--border); }
+  .flex-item { background: var(--accent); color: white; padding: 0.4rem 0.7rem; font-size: 0.75rem; font-family: 'Fira Code', monospace; border-radius: 5px; font-weight: 600; }
+  .flex-item.g { background: var(--green); }
+  .flex-item.o { background: var(--orange); }
+
+  /* GRID DEMO */
+  .grid-demo { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 5px; background: var(--bg3); padding: 0.6rem; border-radius: 8px; border: 2px dashed var(--border); }
+  .grid-item { background: #dbe4ff; color: var(--accent); padding: 0.5rem; font-size: 0.75rem; font-family: 'Fira Code', monospace; border-radius: 5px; text-align: center; border: 1px solid #aab4f5; font-weight: 700; }
+  .grid-item.span2 { grid-column: span 2; background: var(--green-bg); color: var(--green); border-color: #8ce99a; }
+
+  /* SPECIFICITY PYRAMID */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0.5rem; }
+  .pyr-row {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; border-radius: 6px;
+    height: 38px; color: white; font-weight: 800;
+    padding: 0 1rem;
+  }
+
+  /* COLOR SWATCHES */
+  .swatch-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .swatch {
+    width: 100px; height: 65px;
+    border-radius: 8px;
+    display: flex; align-items: flex-end;
+    padding: 5px; font-size: 0.62rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    border: 2px solid rgba(0,0,0,0.1);
+  }
+
+  /* TRANSFORM DEMO */
+  .transform-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; padding: 0.5rem 0; }
+  .tf-box {
+    width: 65px; height: 42px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-family: 'Fira Code', monospace;
+    color: white; border-radius: 6px; font-weight: 700;
+  }
+
+  /* HOVER BUTTON DEMO */
+  .hover-btn {
+    background: transparent; border: 2px solid var(--accent);
+    color: var(--accent); padding: 0.5rem 1.2rem;
+    font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+    font-weight: 700; cursor: pointer; border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  .hover-btn:hover { background: var(--accent); color: white; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59,91,219,0.3); }
+
+  /* ANIMATION DEMO */
+  @keyframes demo-pulse { 0%,100% { transform: scale(1); opacity:1; } 50% { transform: scale(1.1); opacity:0.7; } }
+  .anim-demo-box {
+    width: 60px; height: 60px; background: var(--accent); border-radius: 10px;
+    animation: demo-pulse 2s ease-in-out infinite;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.5rem;
+  }
+
+  /* MEDIA QUERY DEMO */
+  .mq-visual { display: flex; gap: 0.5rem; align-items: flex-end; padding: 0.5rem 0; }
+  .mq-device { border-radius: 6px; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+    nav { position: static; }
+    header { padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🎨 CSS für Einsteiger</h1>
+    <div class="subtitle">Vollständiges Nachschlagewerk — einfach erklärt</div>
+  </div>
+  <span class="level-badge">🟢 Anfänger-freundlich</span>
+</header>
+
+<main>
+
+<nav>
+  <h3>Themen</h3>
+  <a href="#was-ist-css">🤔 Was ist CSS?</a>
+  <a href="#syntax">① Grundaufbau</a>
+  <a href="#selektoren">② Selektoren</a>
+  <a href="#spezifitaet">③ Vorrang-Regeln</a>
+  <a href="#einheiten">④ Maßeinheiten</a>
+  <a href="#boxmodel">⑤ Box-Modell</a>
+  <a href="#text">⑥ Text & Schrift</a>
+  <a href="#farben">⑦ Farben</a>
+  <a href="#display">⑧ Anzeige & Position</a>
+  <a href="#flexbox">⑨ Flexbox</a>
+  <a href="#grid">⑩ Grid</a>
+  <a href="#variablen">⑪ Variablen</a>
+  <a href="#transform">⑫ Transformationen</a>
+  <a href="#transitions">⑬ Übergänge</a>
+  <a href="#animationen">⑭ Animationen</a>
+  <a href="#pseudos">⑮ Pseudo-Klassen</a>
+  <a href="#media">⑯ Media Queries</a>
+  <a href="#functions">⑰ Nützliche Funktionen</a>
+</nav>
+
+<div class="content">
+
+<!-- WAS IST CSS -->
+<section id="was-ist-css">
+  <div class="section-header">
+    <h2>🤔 Was ist CSS überhaupt?</h2>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <strong>Einfache Erklärung:</strong> HTML ist das Skelett einer Webseite (der Inhalt). CSS ist die Kleidung — es bestimmt, wie alles <em>aussieht</em>: Farben, Schriftarten, Abstände, Größen und mehr. Ohne CSS wäre jede Webseite nur schwarzer Text auf weißem Hintergrund.
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🏗️ HTML = Inhalt</h4>
+        <p>HTML erstellt die Elemente: Überschriften, Absätze, Bilder, Buttons, Links.</p>
+        <pre><code><span class="cmt">&lt;!-- HTML: Was da ist --&gt;</span>
+<span class="kw">&lt;h1&gt;</span>Hallo Welt<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;p&gt;</span>Ein Absatz<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;button&gt;</span>Klick mich<span class="kw">&lt;/button&gt;</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>🎨 CSS = Aussehen</h4>
+        <p>CSS gestaltet die Elemente: Farbe, Größe, Abstand, Rahmen, Schrift.</p>
+        <pre><code><span class="cmt">/* CSS: Wie es aussieht */</span>
+<span class="sel">h1</span> {
+  <span class="prop">color</span>: <span class="val">blau</span>;
+  <span class="prop">font-size</span>: <span class="num">32px</span>;
+}
+<span class="sel">button</span> {
+  <span class="prop">background</span>: <span class="val">green</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>📁 Wie bindet man CSS ein?</h4>
+        <p>Am besten als <strong>eigene .css Datei</strong> — das ist die empfohlene Methode für alle Projekte.</p>
+        <pre><code><span class="cmt">&lt;!-- Im &lt;head&gt; deiner HTML-Datei --&gt;</span>
+<span class="kw">&lt;link</span> <span class="prop">rel</span>="<span class="val">stylesheet</span>"
+      <span class="prop">href</span>="<span class="val">style.css</span>"<span class="kw">&gt;</span>
+
+<span class="cmt">&lt;!-- Oder direkt im &lt;head&gt; --&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+  <span class="sel">p</span> { <span class="prop">color</span>: <span class="val">red</span>; }
+<span class="kw">&lt;/style&gt;</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ① SYNTAX -->
+<section id="syntax">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Grundaufbau einer CSS-Regel</h2>
+    <span class="subtitle">Der Bauplan</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Jede CSS-Regel hat immer dasselbe Muster: <strong>Wen willst du stylen?</strong> (Selektor) → <strong>Was soll sich ändern?</strong> (Eigenschaft) → <strong>Wie soll es aussehen?</strong> (Wert)
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🏗️ Der Grundaufbau</h4>
+        <p>Stell dir vor: Du willst alle Überschriften blau machen.</p>
+        <pre><code><span class="sel">h1</span> {
+  <span class="prop">color</span>: <span class="val">blue</span>;
+  <span class="prop">font-size</span>: <span class="num">32px</span>;
+  <span class="cmt">/* Das hier ist ein Kommentar */</span>
+  <span class="cmt">/* Browser ignoriert Kommentare */</span>
+}
+
+<span class="cmt">/* Aufbau:
+   Selektor { Eigenschaft: Wert; } */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>🏆 Welches CSS "gewinnt"?</h4>
+        <p>Wenn mehrere Regeln dasselbe Element ansprechen, gelten diese Regeln (von wichtigsten zu unwichtigsten):</p>
+        <p><strong>1. Inline-Stil</strong> am HTML-Tag selbst (gewinnt fast immer)</p>
+        <p><strong>2. ID-Selektoren</strong> (#mein-element)</p>
+        <p><strong>3. Klassen-Selektoren</strong> (.meine-klasse)</p>
+        <p><strong>4. Element-Selektoren</strong> (p, h1, div)</p>
+        <pre><code><span class="prop">color</span>: <span class="val">red</span> <span class="kw">!important</span>;
+<span class="cmt">/* !important überschreibt ALLES */</span>
+<span class="cmt">/* Nur im Notfall verwenden! */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>📌 Kaskade — was bedeutet das?</h4>
+        <p>CSS steht für <strong>Cascading</strong> Style Sheets. "Cascading" = "kaskadierend" = wie ein Wasserfall, der von oben nach unten fließt.</p>
+        <p>Regeln die <strong>weiter unten</strong> in der CSS-Datei stehen, überschreiben Regeln die weiter oben stehen (wenn sie gleich stark sind).</p>
+        <pre><code><span class="sel">p</span> { <span class="prop">color</span>: <span class="val">red</span>; }
+<span class="sel">p</span> { <span class="prop">color</span>: <span class="val">blue</span>; }
+<span class="cmt">/* p wird BLAU — die 2. Regel gewinnt */</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② SELEKTOREN -->
+<section id="selektoren">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Selektoren</h2>
+    <span class="subtitle">„Wen will ich stylen?"</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Ein Selektor ist wie ein <strong>Finger der auf etwas zeigt</strong>. Du sagst CSS: „Mach <em>dieses</em> Element schön!" Es gibt viele Wege, ein Element auszuwählen.
+      </div>
+    </div>
+    <table class="prop-table">
+      <tr><th>Selektor</th><th>Beispiel</th><th>Was er macht (einfach erklärt)</th></tr>
+      <tr><td>Element</td><td>p { }</td><td>Alle Absätze (&lt;p&gt;) auf der gesamten Seite</td></tr>
+      <tr><td>.klasse</td><td>.btn { }</td><td>Alle Elemente mit class="btn" — mehrere Elemente möglich!</td></tr>
+      <tr><td>#id</td><td>#header { }</td><td>Das <strong>eine</strong> Element mit id="header" — jede ID darf nur einmal vorkommen!</td></tr>
+      <tr><td>*</td><td>* { }</td><td>Alle Elemente auf der Seite (der „Alles-Selektor")</td></tr>
+      <tr><td>A, B</td><td>h1, h2 { }</td><td>Mehrere auf einmal — beide h1 UND h2 bekommen denselben Stil</td></tr>
+      <tr><td>A B</td><td>div p { }</td><td>Alle &lt;p&gt;-Elemente die irgendwo <em>innerhalb</em> eines &lt;div&gt; sind</td></tr>
+      <tr><td>A &gt; B</td><td>ul &gt; li { }</td><td>Nur &lt;li&gt; die <em>direkte</em> Kinder des &lt;ul&gt; sind — keine tiefer liegenden</td></tr>
+      <tr><td>A + B</td><td>h1 + p { }</td><td>Das &lt;p&gt; das <em>direkt nach</em> einem &lt;h1&gt; kommt (Nachbar)</td></tr>
+      <tr><td>[attr="wert"]</td><td>[type="text"] { }</td><td>Alle Elemente mit einem bestimmten Attribut und Wert</td></tr>
+    </table>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>🔗 Selektoren kombinieren</h4>
+        <p>Du kannst Selektoren miteinander verbinden, um genauer zu zielen:</p>
+        <pre><code><span class="cmt">/* Element UND Klasse */</span>
+<span class="sel">p.intro</span> { <span class="prop">color</span>: <span class="val">blue</span>; }
+<span class="cmt">/* Nur &lt;p&gt;-Elemente mit class="intro" */</span>
+
+<span class="cmt">/* Klasse innerhalb von anderem Element */</span>
+<span class="sel">.nav .link</span> { <span class="prop">font-weight</span>: <span class="num">700</span>; }
+<span class="cmt">/* .link nur wenn es in .nav ist */</span>
+
+<span class="cmt">/* Eingabefeld beim Anklicken */</span>
+<span class="sel">input:focus</span> {
+  <span class="prop">border-color</span>: <span class="val">blue</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>🆚 Klasse vs. ID — was ist der Unterschied?</h4>
+        <p><strong>Klasse (.name):</strong> Kann mehrfach auf derselben Seite verwendet werden. Ideal für Dinge die mehrfach vorkommen (Buttons, Karten, Texte).</p>
+        <p><strong>ID (#name):</strong> Darf nur EINMAL pro Seite vorkommen. Gut für eindeutige Bereiche wie die Navigationsleiste oder den Footer.</p>
+        <pre><code><span class="cmt">&lt;!-- Klasse: mehrfach erlaubt --&gt;</span>
+<span class="kw">&lt;button</span> <span class="prop">class</span>="<span class="val">btn</span>"<span class="kw">&gt;</span>OK<span class="kw">&lt;/button&gt;</span>
+<span class="kw">&lt;button</span> <span class="prop">class</span>="<span class="val">btn</span>"<span class="kw">&gt;</span>Abbruch<span class="kw">&lt;/button&gt;</span>
+
+<span class="cmt">&lt;!-- ID: nur einmal! --&gt;</span>
+<span class="kw">&lt;nav</span> <span class="prop">id</span>="<span class="val">hauptmenu</span>"<span class="kw">&gt;</span>...<span class="kw">&lt;/nav&gt;</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ SPEZIFITÄT -->
+<section id="spezifitaet">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Vorrang-Regeln (Spezifität)</h2>
+    <span class="subtitle">Welche Regel setzt sich durch?</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Stell dir vor, zwei CSS-Regeln wollen dasselbe Element anders einfärben. Welche gewinnt? Das bestimmt die <strong>Spezifität</strong> — so etwas wie eine Punkte-Bewertung. Wer mehr Punkte hat, gewinnt.
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🏆 Die Rangfolge (höchste zuerst)</h4>
+        <div class="pyramid">
+          <div class="pyr-row" style="width:100%;background:#c92a2a;">
+            style="" direkt am HTML-Tag → <strong>stärkste</strong>
+          </div>
+          <div class="pyr-row" style="width:85%;background:#7048e8;">
+            #id-Selektor → sehr stark
+          </div>
+          <div class="pyr-row" style="width:70%;background:#1971c2;">
+            .klasse und [attribut] → mittel
+          </div>
+          <div class="pyr-row" style="width:55%;background:#2f9e44;">
+            element (p, h1, div) → schwächste
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>📊 Punkte-Beispiele</h4>
+        <table class="prop-table">
+          <tr><th>Selektor</th><th>Punkte</th></tr>
+          <tr><td>p</td><td>1 Pkt.</td></tr>
+          <tr><td>.box</td><td>10 Pkt.</td></tr>
+          <tr><td>p.box</td><td>11 Pkt.</td></tr>
+          <tr><td>#nav</td><td>100 Pkt.</td></tr>
+          <tr><td>style=""</td><td>1000 Pkt.</td></tr>
+          <tr><td>!important</td><td>gewinnt immer</td></tr>
+        </table>
+        <div class="tip" style="margin-top:0.8rem;">
+          <span class="tip-icon">⚠️</span>
+          <div><strong>!important</strong> nur im Notfall verwenden — es macht den Code schwer zu pflegen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ EINHEITEN -->
+<section id="einheiten">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Maßeinheiten</h2>
+    <span class="subtitle">Wie groß ist etwas?</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        In CSS gibt es verschiedene Einheiten — wie beim Messen in echt (Meter, Zentimeter, Prozent...). Manche sind <strong>fest</strong> (immer gleich groß), andere sind <strong>flexibel</strong> (passen sich an den Bildschirm an).
+      </div>
+    </div>
+    <table class="prop-table">
+      <tr><th>Einheit</th><th>Beispiel</th><th>Einfach erklärt</th></tr>
+      <tr><td colspan="3" class="label">📏 Feste Einheiten (immer gleich groß)</td></tr>
+      <tr><td>px</td><td>16px</td><td>Pixel — die häufigste Einheit. 1px ist ein einzelner Bildschirmpunkt. Gut für Rahmen, kleine Details.</td></tr>
+      <tr><td colspan="3" class="label">📐 Flexible Einheiten (passen sich an)</td></tr>
+      <tr><td>%</td><td>50%</td><td>Prozent des übergeordneten Elements. Wenn das Elternelement 400px breit ist, sind 50% = 200px.</td></tr>
+      <tr><td>em</td><td>1.5em</td><td>Verhältnis zur Schriftgröße des Elternelements. Vorsicht: Kann sich bei Schachtelung summieren!</td></tr>
+      <tr><td>rem</td><td>1rem</td><td>Wie em, aber immer relativ zur Grundschriftgröße der Seite (meistens 16px). <strong>Empfehlung für Anfänger!</strong></td></tr>
+      <tr><td colspan="3" class="label">📱 Bildschirm-Einheiten (relativ zum Browser-Fenster)</td></tr>
+      <tr><td>vw</td><td>100vw</td><td>1vw = 1% der Browserbreite. 100vw = volle Browserbreite. Gut für große Banner.</td></tr>
+      <tr><td>vh</td><td>100vh</td><td>1vh = 1% der Browserhöhe. 100vh = volle Browserhöhe. Gut für Vollbild-Bereiche.</td></tr>
+      <tr><td colspan="3" class="label">🔲 Nur für CSS Grid</td></tr>
+      <tr><td>fr</td><td>1fr</td><td>„Fraction" (Anteil) — teilt den freien Platz auf. 1fr 2fr = ein Drittel + zwei Drittel.</td></tr>
+    </table>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>🤔 px, em oder rem — was nehmen?</h4>
+        <p><strong>px</strong> → für feste Größen: Rahmen, Schatten, kleine Icons</p>
+        <p><strong>rem</strong> → für Schriftgrößen und Abstände (passt sich an Nutzer-Einstellungen an)</p>
+        <p><strong>%</strong> → für Breiten von Containern (z.B. width: 100%)</p>
+        <p><strong>vw/vh</strong> → für Elemente die den ganzen Bildschirm füllen sollen</p>
+      </div>
+      <div class="card">
+        <h4>⏱️ Zeit-Einheiten (für Animationen)</h4>
+        <p>Für Übergänge und Animationen braucht man Zeit-Einheiten:</p>
+        <pre><code><span class="prop">transition-duration</span>: <span class="num">0.3s</span>;
+<span class="cmt">/* 0.3 Sekunden */</span>
+
+<span class="prop">animation-duration</span>: <span class="num">1500ms</span>;
+<span class="cmt">/* 1500 Millisekunden = 1.5 Sekunden */</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ BOX MODEL -->
+<section id="boxmodel">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Das Box-Modell</h2>
+    <span class="subtitle">Wie viel Platz nimmt ein Element ein?</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Jedes HTML-Element ist eine <strong>Box</strong>. Diese Box hat 4 Schichten: Inhalt → Innenabstand → Rahmen → Außenabstand. Stell dir eine Postkarte im Umschlag in einem Paket vor!
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>📦 Die 4 Schichten</h4>
+        <div class="boxmodel-wrap">
+          <div class="bm-margin">
+            🟡 margin (Außenabstand)
+            <div class="bm-border">
+              🔴 border (Rahmen)
+              <div class="bm-padding">
+                🟢 padding (Innenabstand)
+                <div class="bm-content">🔵 content (Inhalt)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>📏 Margin, Padding, Border</h4>
+        <p><strong>margin</strong> = Abstand nach außen (zu anderen Elementen)</p>
+        <p><strong>padding</strong> = Abstand nach innen (zwischen Rahmen und Inhalt)</p>
+        <p><strong>border</strong> = der Rahmen selbst</p>
+        <pre><code><span class="cmt">/* Alle 4 Seiten gleich */</span>
+<span class="prop">margin</span>: <span class="num">10px</span>;
+
+<span class="cmt">/* Oben/Unten  Links/Rechts */</span>
+<span class="prop">padding</span>: <span class="num">10px 20px</span>;
+
+<span class="cmt">/* Oben Rechts Unten Links */</span>
+<span class="prop">margin</span>: <span class="num">10px 20px 30px 40px</span>;
+<span class="cmt">/* Merkregel: Uhrzeigersinn! */</span>
+
+<span class="cmt">/* Nur eine Seite */</span>
+<span class="prop">margin-top</span>: <span class="num">20px</span>;
+<span class="prop">padding-left</span>: <span class="num">15px</span>;</code></pre>
+      </div>
+      <div class="card">
+        <h4>⚠️ Wichtiger Tipp: box-sizing</h4>
+        <p>Standardmäßig kommt Padding und Border noch <em>drauf</em> zur angegebenen Breite — das ist verwirrend!</p>
+        <p>Mit <code>border-box</code> ist alles intuitiver: die Breite schließt Padding und Border bereits ein.</p>
+        <pre><code><span class="cmt">/* Das solltest du IMMER am Anfang
+   deiner CSS-Datei einfügen! */</span>
+<span class="sel">*</span>, <span class="sel">*::before</span>, <span class="sel">*::after</span> {
+  <span class="prop">box-sizing</span>: <span class="val">border-box</span>;
+}
+
+<span class="cmt">/* Rahmen */</span>
+<span class="prop">border</span>: <span class="num">2px</span> <span class="val">solid</span> <span class="val">#333</span>;
+<span class="prop">border-radius</span>: <span class="num">8px</span>; <span class="cmt">/* runde Ecken */</span>
+<span class="prop">border-radius</span>: <span class="num">50%</span>; <span class="cmt">/* Kreis! */</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ TEXT -->
+<section id="text">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Text & Schrift</h2>
+    <span class="subtitle">Wie Text aussieht</span>
+  </div>
+  <div class="section-body">
+    <div class="card-grid">
+      <div class="card">
+        <h4>🔤 Schriftart & Größe</h4>
+        <pre><code><span class="cmt">/* Schriftart (immer Fallback angeben) */</span>
+<span class="prop">font-family</span>: <span class="val">'Roboto', Arial, sans-serif</span>;
+
+<span class="cmt">/* Größe */</span>
+<span class="prop">font-size</span>: <span class="num">1rem</span>; <span class="cmt">/* = 16px Standard */</span>
+<span class="prop">font-size</span>: <span class="num">24px</span>;
+
+<span class="cmt">/* Dicke (Fettschrift) */</span>
+<span class="prop">font-weight</span>: <span class="num">400</span>; <span class="cmt">/* normal */</span>
+<span class="prop">font-weight</span>: <span class="num">700</span>; <span class="cmt">/* fett */</span>
+<span class="prop">font-weight</span>: <span class="val">bold</span>;
+
+<span class="cmt">/* Kursiv */</span>
+<span class="prop">font-style</span>: <span class="val">italic</span>;
+
+<span class="cmt">/* Zeilenhöhe */</span>
+<span class="prop">line-height</span>: <span class="num">1.6</span>; <span class="cmt">/* angenehm zum Lesen */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>📝 Text formatieren</h4>
+        <pre><code><span class="cmt">/* Textfarbe */</span>
+<span class="prop">color</span>: <span class="val">#333</span>;
+
+<span class="cmt">/* Ausrichtung */</span>
+<span class="prop">text-align</span>: <span class="val">left</span>;     <span class="cmt">/* links */</span>
+<span class="prop">text-align</span>: <span class="val">center</span>;   <span class="cmt">/* mittig */</span>
+<span class="prop">text-align</span>: <span class="val">right</span>;    <span class="cmt">/* rechts */</span>
+
+<span class="cmt">/* Unterstrichen / Durchgestrichen */</span>
+<span class="prop">text-decoration</span>: <span class="val">underline</span>;
+<span class="prop">text-decoration</span>: <span class="val">none</span>;  <span class="cmt">/* entfernt Unterstrich */</span>
+
+<span class="cmt">/* Großschreibung */</span>
+<span class="prop">text-transform</span>: <span class="val">uppercase</span>; <span class="cmt">/* ALLES GROß */</span>
+<span class="prop">text-transform</span>: <span class="val">capitalize</span>; <span class="cmt">/* Jeden Ersten Buchstaben */</span>
+
+<span class="cmt">/* Abstand zwischen Buchstaben */</span>
+<span class="prop">letter-spacing</span>: <span class="num">0.1em</span>;
+
+<span class="cmt">/* Text-Schatten */</span>
+<span class="prop">text-shadow</span>: <span class="num">2px 2px 4px</span> <span class="val">rgba(0,0,0,0.3)</span>;</code></pre>
+      </div>
+      <div class="card">
+        <h4>🌐 Google Fonts nutzen</h4>
+        <p>Du kannst kostenlos schöne Schriften von Google einbinden:</p>
+        <pre><code><span class="cmt">&lt;!-- 1. Im HTML &lt;head&gt; einfügen --&gt;</span>
+<span class="kw">&lt;link</span>
+  <span class="prop">href</span>="<span class="val">https://fonts.googleapis.com/
+  css2?family=Roboto&display=swap</span>"
+  <span class="prop">rel</span>="<span class="val">stylesheet</span>"<span class="kw">&gt;</span>
+
+<span class="cmt">/* 2. In CSS verwenden */</span>
+<span class="sel">body</span> {
+  <span class="prop">font-family</span>: <span class="val">'Roboto', sans-serif</span>;
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ FARBEN -->
+<section id="farben">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>Farben & Hintergründe</h2>
+    <span class="subtitle">Alle Wege eine Farbe anzugeben</span>
+  </div>
+  <div class="section-body">
+    <div class="card-grid">
+      <div class="card">
+        <h4>🎨 Farbformate</h4>
+        <div class="swatch-row" style="margin-bottom:0.8rem;">
+          <div class="swatch" style="background:#e74c3c;color:#fff">#e74c3c<br>HEX</div>
+          <div class="swatch" style="background:rgb(231,76,60);color:#fff">rgb()<br>RGB</div>
+          <div class="swatch" style="background:rgba(231,76,60,0.5);color:#fff">rgba()<br>transparent</div>
+          <div class="swatch" style="background:hsl(6,78%,57%);color:#fff">hsl()<br>HSL</div>
+        </div>
+        <pre><code><span class="cmt">/* Mit Namen */</span>
+<span class="prop">color</span>: <span class="val">red</span>;
+<span class="prop">color</span>: <span class="val">tomato</span>;
+
+<span class="cmt">/* HEX-Code (# + 6 Zeichen) */</span>
+<span class="prop">color</span>: <span class="val">#e74c3c</span>;
+
+<span class="cmt">/* RGB (Rot Grün Blau, je 0-255) */</span>
+<span class="prop">color</span>: <span class="fn">rgb</span>(<span class="num">231, 76, 60</span>);
+
+<span class="cmt">/* RGBA (+ Durchsichtigkeit 0-1) */</span>
+<span class="prop">color</span>: <span class="fn">rgba</span>(<span class="num">231, 76, 60, 0.5</span>);
+<span class="cmt">/* 0 = unsichtbar, 1 = voll sichtbar */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>🌅 Hintergrund</h4>
+        <pre><code><span class="cmt">/* Einfarbiger Hintergrund */</span>
+<span class="prop">background-color</span>: <span class="val">#f0f0f0</span>;
+
+<span class="cmt">/* Hintergrundbild */</span>
+<span class="prop">background-image</span>: <span class="fn">url</span>(<span class="val">'bild.jpg'</span>);
+<span class="prop">background-size</span>: <span class="val">cover</span>;   <span class="cmt">/* füllt alles aus */</span>
+<span class="prop">background-position</span>: <span class="val">center</span>;
+
+<span class="cmt">/* Farbverlauf (von links nach rechts) */</span>
+<span class="prop">background</span>: <span class="fn">linear-gradient</span>(
+  <span class="val">to right</span>, <span class="val">#ff6b6b</span>, <span class="val">#4ecdc4</span>
+);
+
+<span class="cmt">/* Farbverlauf diagonal */</span>
+<span class="prop">background</span>: <span class="fn">linear-gradient</span>(
+  <span class="num">135deg</span>, <span class="val">#667eea</span>, <span class="val">#764ba2</span>
+);</code></pre>
+      </div>
+      <div class="card">
+        <h4>💡 HSL — Farbe einfach wählen</h4>
+        <p>HSL steht für <strong>H</strong>ue (Farbton 0-360°), <strong>S</strong>aturation (Sättigung 0-100%), <strong>L</strong>ightness (Helligkeit 0-100%).</p>
+        <p>Das macht es leichter, Farben zu variieren:</p>
+        <pre><code><span class="cmt">/* Rot */</span>
+<span class="prop">color</span>: <span class="fn">hsl</span>(<span class="num">0</span>, <span class="num">80%</span>, <span class="num">50%</span>);
+
+<span class="cmt">/* Helleres Rot - nur Helligkeit ändern */</span>
+<span class="prop">color</span>: <span class="fn">hsl</span>(<span class="num">0</span>, <span class="num">80%</span>, <span class="num">70%</span>);
+
+<span class="cmt">/* Transparentes Rot */</span>
+<span class="prop">color</span>: <span class="fn">hsla</span>(<span class="num">0</span>, <span class="num">80%</span>, <span class="num">50%</span>, <span class="num">0.5</span>);</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ DISPLAY & POSITION -->
+<section id="display">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Anzeige & Position</h2>
+    <span class="subtitle">Wie und wo erscheint ein Element?</span>
+  </div>
+  <div class="section-body">
+    <div class="card-grid">
+      <div class="card">
+        <h4>📺 display-Eigenschaft</h4>
+        <p><strong>block</strong> = nimmt volle Breite ein, neue Zeile (div, p, h1)</p>
+        <p><strong>inline</strong> = nur so breit wie der Inhalt, bleibt in der Zeile (span, a)</p>
+        <p><strong>inline-block</strong> = wie inline, aber Breite/Höhe einstellbar</p>
+        <p><strong>none</strong> = Element ist vollständig unsichtbar und nimmt keinen Platz ein</p>
+        <pre><code><span class="prop">display</span>: <span class="val">block</span>;
+<span class="prop">display</span>: <span class="val">inline</span>;
+<span class="prop">display</span>: <span class="val">inline-block</span>;
+<span class="prop">display</span>: <span class="val">none</span>;  <span class="cmt">/* verstecken */</span>
+<span class="prop">display</span>: <span class="val">flex</span>;  <span class="cmt">/* → Flexbox-Kapitel */</span>
+<span class="prop">display</span>: <span class="val">grid</span>;  <span class="cmt">/* → Grid-Kapitel */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>📍 position-Eigenschaft</h4>
+        <p><strong>static</strong> = Normalfluss (Standard)</p>
+        <p><strong>relative</strong> = verschoben relativ zu seiner normalen Position</p>
+        <p><strong>absolute</strong> = aus dem Fluss heraus, positioniert im nächsten positioned-Elternelement</p>
+        <p><strong>fixed</strong> = bleibt beim Scrollen auf dem Bildschirm fixiert</p>
+        <p><strong>sticky</strong> = normal, aber bleibt oben „kleben" wenn man scrollt</p>
+        <pre><code><span class="prop">position</span>: <span class="val">fixed</span>;
+<span class="prop">top</span>: <span class="num">0</span>;
+<span class="prop">left</span>: <span class="num">0</span>;
+<span class="cmt">/* z.B. für fixe Navigationsleiste */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>🗂️ z-index — wer liegt oben?</h4>
+        <p>Wenn Elemente übereinanderliegen, bestimmt <code>z-index</code> wer sichtbar ist. Höherer Wert = weiter vorne.</p>
+        <pre><code><span class="sel">.popup</span> {
+  <span class="prop">position</span>: <span class="val">fixed</span>;
+  <span class="prop">z-index</span>: <span class="num">1000</span>; <span class="cmt">/* liegt über allem */</span>
+}
+
+<span class="sel">.header</span> {
+  <span class="prop">position</span>: <span class="val">sticky</span>;
+  <span class="prop">top</span>: <span class="num">0</span>;
+  <span class="prop">z-index</span>: <span class="num">100</span>;
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ FLEXBOX -->
+<section id="flexbox">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2>Flexbox</h2>
+    <span class="subtitle">Elemente in einer Reihe oder Spalte anordnen</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Flexbox ist wie eine <strong>flexible Schachtel</strong>. Du kannst bestimmen, wie die Inhalt-Boxen darin angeordnet werden: nebeneinander, untereinander, wie viel Abstand dazwischen, ob sie sich ausdehnen usw.
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>👁️ Live-Vorschau</h4>
+      <div class="flex-demo">
+        <div class="flex-item">Box 1</div>
+        <div class="flex-item g">Box 2</div>
+        <div class="flex-item o">Box 3</div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:0.4rem;">Diese 3 Boxen liegen nebeneinander, weil ihr Container <code>display: flex</code> hat.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>🐣 Flexbox starten (am Container)</h4>
+        <pre><code><span class="sel">.container</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;  <span class="cmt">/* Flexbox aktivieren */</span>
+
+  <span class="cmt">/* Richtung: nebeneinander oder untereinander */</span>
+  <span class="prop">flex-direction</span>: <span class="val">row</span>;     <span class="cmt">/* → nebeneinander */</span>
+  <span class="prop">flex-direction</span>: <span class="val">column</span>;  <span class="cmt">/* ↓ untereinander */</span>
+
+  <span class="cmt">/* Abstand zwischen den Elementen */</span>
+  <span class="prop">gap</span>: <span class="num">1rem</span>;
+
+  <span class="cmt">/* Umbrechen wenn kein Platz mehr */</span>
+  <span class="prop">flex-wrap</span>: <span class="val">wrap</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>↔️ Ausrichtung horizontal (justify-content)</h4>
+        <pre><code><span class="cmt">/* Alle nach links (Standard) */</span>
+<span class="prop">justify-content</span>: <span class="val">flex-start</span>;
+
+<span class="cmt">/* Alle nach rechts */</span>
+<span class="prop">justify-content</span>: <span class="val">flex-end</span>;
+
+<span class="cmt">/* Alle in der Mitte */</span>
+<span class="prop">justify-content</span>: <span class="val">center</span>;
+
+<span class="cmt">/* Gleichmäßig verteilt */</span>
+<span class="prop">justify-content</span>: <span class="val">space-between</span>;
+
+<span class="cmt">/* Mit Abstand außen */</span>
+<span class="prop">justify-content</span>: <span class="val">space-around</span>;</code></pre>
+      </div>
+      <div class="card">
+        <h4>↕️ Ausrichtung vertikal (align-items)</h4>
+        <pre><code><span class="cmt">/* Am oberen Rand */</span>
+<span class="prop">align-items</span>: <span class="val">flex-start</span>;
+
+<span class="cmt">/* Am unteren Rand */</span>
+<span class="prop">align-items</span>: <span class="val">flex-end</span>;
+
+<span class="cmt">/* In der Mitte — sehr nützlich! */</span>
+<span class="prop">align-items</span>: <span class="val">center</span>;
+
+<span class="cmt">/* Strecken (Standard) */</span>
+<span class="prop">align-items</span>: <span class="val">stretch</span>;</code></pre>
+      </div>
+      <div class="card">
+        <h4>⭐ Perfekt zentrieren</h4>
+        <p>Das häufigste Problem für Anfänger: etwas zentrieren. Mit Flexbox ganz einfach:</p>
+        <pre><code><span class="sel">.container</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">justify-content</span>: <span class="val">center</span>; <span class="cmt">/* horizontal */</span>
+  <span class="prop">align-items</span>: <span class="val">center</span>;    <span class="cmt">/* vertikal */</span>
+  <span class="prop">height</span>: <span class="num">100vh</span>;
+}
+<span class="cmt">/* → Inhalt ist perfekt zentriert! */</span></code></pre>
+      </div>
+      <div class="card">
+        <h4>📦 Kinder-Elemente steuern</h4>
+        <pre><code><span class="sel">.kind-element</span> {
+  <span class="cmt">/* Wie viel darf es wachsen? */</span>
+  <span class="prop">flex-grow</span>: <span class="num">1</span>;  <span class="cmt">/* füllt freien Platz */</span>
+  <span class="prop">flex-grow</span>: <span class="num">0</span>;  <span class="cmt">/* wächst nicht */</span>
+
+  <span class="cmt">/* Mindestbreite */</span>
+  <span class="prop">flex-basis</span>: <span class="num">200px</span>;
+
+  <span class="cmt">/* Kurzschrift: wachsen schrumpfen basis */</span>
+  <span class="prop">flex</span>: <span class="num">1 1 200px</span>;
+
+  <span class="cmt">/* Sich selbst anders ausrichten */</span>
+  <span class="prop">align-self</span>: <span class="val">flex-end</span>;
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑩ GRID -->
+<section id="grid">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2>CSS Grid</h2>
+    <span class="subtitle">Elemente in einem Raster anordnen</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Grid ist wie ein <strong>Tabellen-Layout</strong> — aber viel mächtiger! Du definierst Spalten und Zeilen, und die Elemente ordnen sich automatisch ein. Perfekt für komplexe Seiten-Layouts.
+      </div>
+    </div>
+    <div class="card">
+      <h4>👁️ Live-Vorschau: 3 Spalten (1fr 2fr 1fr)</h4>
+      <div class="grid-demo">
+        <div class="grid-item">A</div>
+        <div class="grid-item span2">B (nimmt 2 Spalten ein)</div>
+        <div class="grid-item">C</div>
+        <div class="grid-item">D</div>
+        <div class="grid-item">E</div>
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🏁 Grid starten</h4>
+        <pre><code><span class="sel">.container</span> {
+  <span class="prop">display</span>: <span class="val">grid</span>;
+
+  <span class="cmt">/* 3 Spalten: 1/4, 1/2, 1/4 */</span>
+  <span class="prop">grid-template-columns</span>: <span class="num">1fr 2fr 1fr</span>;
+
+  <span class="cmt">/* 3 gleich breite Spalten */</span>
+  <span class="prop">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="num">3</span>, <span class="num">1fr</span>);
+
+  <span class="cmt">/* Automatisch so viele wie reinpassen */</span>
+  <span class="prop">grid-template-columns</span>:
+    <span class="fn">repeat</span>(<span class="val">auto-fill</span>, <span class="fn">minmax</span>(<span class="num">250px</span>, <span class="num">1fr</span>));
+
+  <span class="cmt">/* Abstand zwischen Zellen */</span>
+  <span class="prop">gap</span>: <span class="num">1rem</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>🗺️ Element über mehrere Zellen strecken</h4>
+        <pre><code><span class="sel">.element</span> {
+  <span class="cmt">/* Über 2 Spalten strecken */</span>
+  <span class="prop">grid-column</span>: <span class="val">span</span> <span class="num">2</span>;
+
+  <span class="cmt">/* Über 3 Zeilen strecken */</span>
+  <span class="prop">grid-row</span>: <span class="val">span</span> <span class="num">3</span>;
+
+  <span class="cmt">/* Exakte Position: Spalte 2 bis 4 */</span>
+  <span class="prop">grid-column</span>: <span class="num">2</span> / <span class="num">4</span>;
+
+  <span class="cmt">/* Die ganze Breite einnehmen */</span>
+  <span class="prop">grid-column</span>: <span class="num">1</span> / <span class="val">-1</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>🏗️ Benannte Bereiche (Template Areas)</h4>
+        <p>Du kannst Bereiche mit Namen versehen — sehr übersichtlich!</p>
+        <pre><code><span class="sel">.container</span> {
+  <span class="prop">display</span>: <span class="val">grid</span>;
+  <span class="prop">grid-template-areas</span>:
+    <span class="val">"header header"</span>
+    <span class="val">"sidebar main"</span>
+    <span class="val">"footer footer"</span>;
+}
+<span class="sel">.header</span>  { <span class="prop">grid-area</span>: <span class="val">header</span>; }
+<span class="sel">.sidebar</span> { <span class="prop">grid-area</span>: <span class="val">sidebar</span>; }
+<span class="sel">.main</span>    { <span class="prop">grid-area</span>: <span class="val">main</span>; }
+<span class="sel">.footer</span>  { <span class="prop">grid-area</span>: <span class="val">footer</span>; }</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑪ VARIABLEN -->
+<section id="variablen">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2>CSS Variablen</h2>
+    <span class="subtitle">Werte einmal definieren, überall verwenden</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Stell dir vor, du hast auf 50 Seiten die gleiche blaue Farbe verwendet. Jetzt soll sie grün werden. Ohne Variablen: 50 Stellen ändern. Mit Variablen: <strong>eine Stelle ändern</strong>, alles aktualisiert sich automatisch!
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>📦 Variablen definieren & nutzen</h4>
+        <pre><code><span class="cmt">/* Variablen immer in :root definieren */</span>
+<span class="cmt">/* (damit sie überall verfügbar sind) */</span>
+<span class="sel">:root</span> {
+  <span class="prop">--hauptfarbe</span>: <span class="val">#3b5bdb</span>;
+  <span class="prop">--text-farbe</span>: <span class="val">#333</span>;
+  <span class="prop">--abstand</span>: <span class="num">1rem</span>;
+  <span class="prop">--rahmen-radius</span>: <span class="num">8px</span>;
+}
+
+<span class="cmt">/* Verwenden mit var() */</span>
+<span class="sel">button</span> {
+  <span class="prop">background</span>: <span class="fn">var</span>(<span class="prop">--hauptfarbe</span>);
+  <span class="prop">padding</span>: <span class="fn">var</span>(<span class="prop">--abstand</span>);
+  <span class="prop">border-radius</span>: <span class="fn">var</span>(<span class="prop">--rahmen-radius</span>);
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>🌙 Dark Mode mit Variablen</h4>
+        <p>Mit Variablen kannst du einen Dark Mode ganz einfach umsetzen:</p>
+        <pre><code><span class="sel">:root</span> {
+  <span class="prop">--bg</span>: <span class="val">white</span>;
+  <span class="prop">--text</span>: <span class="val">#333</span>;
+}
+
+<span class="cmt">/* Wenn Nutzer Dark Mode bevorzugt */</span>
+<span class="kw">@media</span> (<span class="prop">prefers-color-scheme</span>: <span class="val">dark</span>) {
+  <span class="sel">:root</span> {
+    <span class="prop">--bg</span>: <span class="val">#1a1a1a</span>;
+    <span class="prop">--text</span>: <span class="val">#eeeeee</span>;
+  }
+}
+
+<span class="sel">body</span> {
+  <span class="prop">background</span>: <span class="fn">var</span>(<span class="prop">--bg</span>);
+  <span class="prop">color</span>: <span class="fn">var</span>(<span class="prop">--text</span>);
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑫ TRANSFORM -->
+<section id="transform">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2>Transformationen</h2>
+    <span class="subtitle">Elemente drehen, schieben, vergrößern</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Mit <code>transform</code> kannst du ein Element visuell verschieben, drehen oder vergrößern — <strong>ohne</strong> das Layout der anderen Elemente zu stören!
+      </div>
+    </div>
+    <div class="card">
+      <h4>👁️ Beispiele</h4>
+      <div class="transform-grid">
+        <div>
+          <div class="tf-box" style="transform:none">normal</div>
+          <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:4px">normal</p>
+        </div>
+        <div>
+          <div class="tf-box" style="transform:rotate(20deg)">rotate</div>
+          <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:4px">rotate(20deg)</p>
+        </div>
+        <div>
+          <div class="tf-box" style="transform:scale(1.3)">scale</div>
+          <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:4px">scale(1.3)</p>
+        </div>
+        <div>
+          <div class="tf-box" style="transform:translateX(15px)">translate</div>
+          <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:4px">translateX(15px)</p>
+        </div>
+        <div>
+          <div class="tf-box" style="transform:skewX(15deg)">skew</div>
+          <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:4px">skewX(15deg)</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🔧 Alle Transform-Funktionen</h4>
+        <pre><code><span class="cmt">/* Verschieben */</span>
+<span class="prop">transform</span>: <span class="fn">translateX</span>(<span class="num">20px</span>);   <span class="cmt">/* nach rechts */</span>
+<span class="prop">transform</span>: <span class="fn">translateY</span>(<span class="num">-10px</span>);  <span class="cmt">/* nach oben */</span>
+<span class="prop">transform</span>: <span class="fn">translate</span>(<span class="num">20px, -10px</span>);
+
+<span class="cmt">/* Drehen */</span>
+<span class="prop">transform</span>: <span class="fn">rotate</span>(<span class="num">45deg</span>);    <span class="cmt">/* 45 Grad */</span>
+<span class="prop">transform</span>: <span class="fn">rotate</span>(<span class="num">-90deg</span>);   <span class="cmt">/* gegen Uhrzeigersinn */</span>
+
+<span class="cmt">/* Vergrößern/Verkleinern */</span>
+<span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">1.5</span>);   <span class="cmt">/* 1.5x größer */</span>
+<span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">0.5</span>);   <span class="cmt">/* halb so groß */</span>
+
+<span class="cmt">/* Kombinieren */</span>
+<span class="prop">transform</span>: <span class="fn">rotate</span>(<span class="num">45deg</span>) <span class="fn">scale</span>(<span class="num">1.2</span>);</code></pre>
+      </div>
+      <div class="card">
+        <h4>🎯 Drehpunkt ändern (transform-origin)</h4>
+        <p>Standardmäßig dreht/skaliert sich alles von der Mitte. Das kannst du ändern:</p>
+        <pre><code><span class="cmt">/* Drehpunkt oben links */</span>
+<span class="prop">transform-origin</span>: <span class="val">top left</span>;
+
+<span class="cmt">/* Drehpunkt unten rechts */</span>
+<span class="prop">transform-origin</span>: <span class="val">bottom right</span>;
+
+<span class="cmt">/* Mit Koordinaten */</span>
+<span class="prop">transform-origin</span>: <span class="num">0% 50%</span>;</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑬ TRANSITIONS -->
+<section id="transitions">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <h2>Übergänge (Transitions)</h2>
+    <span class="subtitle">Sanfte Veränderungen beim Hover, Klick & Co.</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Ohne Transition: Farbe wechselt sofort abrupt. Mit Transition: Farbe wechselt <strong>sanft</strong> über eine bestimmte Zeit. Das macht Webseiten viel professioneller!
+      </div>
+    </div>
+    <div class="card">
+      <h4>👁️ Demo — fahre mit der Maus über den Button!</h4>
+      <button class="hover-btn">Hover über mich!</button>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>⚙️ Transition einrichten</h4>
+        <pre><code><span class="sel">.button</span> {
+  <span class="prop">background</span>: <span class="val">blue</span>;
+  <span class="prop">color</span>: <span class="val">white</span>;
+
+  <span class="cmt">/* Alle Änderungen sanft über 0.3 Sek. */</span>
+  <span class="prop">transition</span>: <span class="val">all</span> <span class="num">0.3s</span> <span class="val">ease</span>;
+}
+
+<span class="sel">.button:hover</span> {
+  <span class="prop">background</span>: <span class="val">darkblue</span>;
+  <span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">1.05</span>);
+  <span class="cmt">/* → sanfter Übergang dank transition! */</span>
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>⏱️ Geschwindigkeit & Timing</h4>
+        <pre><code><span class="cmt">/* ease = langsam, schnell, langsam (Standard) */</span>
+<span class="prop">transition-timing-function</span>: <span class="val">ease</span>;
+
+<span class="cmt">/* linear = gleichmäßig */</span>
+<span class="prop">transition-timing-function</span>: <span class="val">linear</span>;
+
+<span class="cmt">/* ease-in = startet langsam */</span>
+<span class="prop">transition-timing-function</span>: <span class="val">ease-in</span>;
+
+<span class="cmt">/* ease-out = endet langsam */</span>
+<span class="prop">transition-timing-function</span>: <span class="val">ease-out</span>;
+
+<span class="cmt">/* Kurzschrift: Eigenschaft Dauer Timing */</span>
+<span class="prop">transition</span>: <span class="val">background</span> <span class="num">0.3s</span> <span class="val">ease</span>,
+            <span class="val">transform</span> <span class="num">0.2s</span> <span class="val">ease-out</span>;</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑭ ANIMATIONEN -->
+<section id="animationen">
+  <div class="section-header">
+    <span class="section-num">14</span>
+    <h2>Animationen</h2>
+    <span class="subtitle">Bewegte Elemente ohne JavaScript</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Transitions laufen einmal (beim Hover z.B.). Animationen laufen <strong>automatisch</strong> und können sich wiederholen. Du definierst Schlüsselpunkte (<code>@keyframes</code>) und CSS macht den Rest!
+      </div>
+    </div>
+    <div class="card">
+      <h4>👁️ Demo — diese Box pulsiert automatisch</h4>
+      <div class="anim-demo-box">💙</div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🎬 Animation erstellen</h4>
+        <pre><code><span class="cmt">/* 1. Keyframes definieren (der Ablauf) */</span>
+<span class="kw">@keyframes</span> <span class="val">pulsieren</span> {
+  <span class="num">0%</span>   { <span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">1</span>); }
+  <span class="num">50%</span>  { <span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">1.1</span>); }
+  <span class="num">100%</span> { <span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">1</span>); }
+}
+
+<span class="cmt">/* 2. Animation am Element nutzen */</span>
+<span class="sel">.mein-element</span> {
+  <span class="prop">animation-name</span>: <span class="val">pulsieren</span>;
+  <span class="prop">animation-duration</span>: <span class="num">2s</span>;        <span class="cmt">/* Dauer */</span>
+  <span class="prop">animation-iteration-count</span>: <span class="val">infinite</span>; <span class="cmt">/* Wiederholen */</span>
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>⚙️ Weitere Animation-Optionen</h4>
+        <pre><code><span class="sel">.element</span> {
+  <span class="cmt">/* Kurzschrift */</span>
+  <span class="prop">animation</span>: <span class="val">pulsieren</span> <span class="num">2s</span> <span class="val">ease-in-out</span> <span class="val">infinite</span>;
+
+  <span class="cmt">/* Richtung: vorwärts-rückwärts-vorwärts... */</span>
+  <span class="prop">animation-direction</span>: <span class="val">alternate</span>;
+
+  <span class="cmt">/* 1 Sekunde warten bevor Start */</span>
+  <span class="prop">animation-delay</span>: <span class="num">1s</span>;
+
+  <span class="cmt">/* Am Ende bleibt Element im letzten Zustand */</span>
+  <span class="prop">animation-fill-mode</span>: <span class="val">forwards</span>;
+
+  <span class="cmt">/* Animation pausieren */</span>
+  <span class="prop">animation-play-state</span>: <span class="val">paused</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>🌟 Einblend-Animation (Beispiel)</h4>
+        <pre><code><span class="kw">@keyframes</span> <span class="val">einblenden</span> {
+  <span class="kw">from</span> {
+    <span class="prop">opacity</span>: <span class="num">0</span>;
+    <span class="prop">transform</span>: <span class="fn">translateY</span>(<span class="num">20px</span>);
+  }
+  <span class="kw">to</span> {
+    <span class="prop">opacity</span>: <span class="num">1</span>;
+    <span class="prop">transform</span>: <span class="fn">translateY</span>(<span class="num">0</span>);
+  }
+}
+
+<span class="sel">.karte</span> {
+  <span class="prop">animation</span>: <span class="val">einblenden</span> <span class="num">0.5s</span> <span class="val">ease-out</span>;
+}
+<span class="cmt">/* Element fährt beim Laden sanft von unten ein */</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑮ PSEUDO-KLASSEN -->
+<section id="pseudos">
+  <div class="section-header">
+    <span class="section-num">15</span>
+    <h2>Pseudo-Klassen & Pseudo-Elemente</h2>
+    <span class="subtitle">Spezielle Zustände und unsichtbare Elemente</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <strong>Pseudo-Klassen</strong> (mit einem Doppelpunkt) beschreiben einen <em>Zustand</em>: „Wenn die Maus drüber ist", „Wenn es das erste Kind ist", „Wenn der Link besucht wurde".<br>
+        <strong>Pseudo-Elemente</strong> (mit zwei Doppelpunkten) erzeugen <em>virtuelle Elemente</em>: vor oder nach dem Inhalt.
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🖱️ Interaktions-Zustände</h4>
+        <pre><code><span class="cmt">/* Wenn Maus drüber fährt */</span>
+<span class="sel">a:hover</span> { <span class="prop">color</span>: <span class="val">blue</span>; }
+
+<span class="cmt">/* Wenn angeklickt wird */</span>
+<span class="sel">button:active</span> { <span class="prop">transform</span>: <span class="fn">scale</span>(<span class="num">0.95</span>); }
+
+<span class="cmt">/* Wenn Eingabefeld aktiv ist */</span>
+<span class="sel">input:focus</span> { <span class="prop">border-color</span>: <span class="val">blue</span>; }
+
+<span class="cmt">/* Checkbox die angehakt ist */</span>
+<span class="sel">input:checked</span> { <span class="prop">accent-color</span>: <span class="val">green</span>; }
+
+<span class="cmt">/* Besuchter Link */</span>
+<span class="sel">a:visited</span> { <span class="prop">color</span>: <span class="val">purple</span>; }</code></pre>
+      </div>
+      <div class="card">
+        <h4>🔢 Positions-Pseudo-Klassen</h4>
+        <pre><code><span class="cmt">/* Erstes Kind-Element */</span>
+<span class="sel">li:first-child</span> { <span class="prop">font-weight</span>: <span class="val">bold</span>; }
+
+<span class="cmt">/* Letztes Kind-Element */</span>
+<span class="sel">li:last-child</span> { <span class="prop">border</span>: <span class="val">none</span>; }
+
+<span class="cmt">/* Jedes 2. Element */</span>
+<span class="sel">li:nth-child(2n)</span> { <span class="prop">background</span>: <span class="val">#f0f0f0</span>; }
+
+<span class="cmt">/* Jedes gerade Element */</span>
+<span class="sel">tr:nth-child(even)</span> { <span class="prop">background</span>: <span class="val">#f5f5f5</span>; }
+
+<span class="cmt">/* Wenn ein Element keine Kinder hat */</span>
+<span class="sel">p:empty</span> { <span class="prop">display</span>: <span class="val">none</span>; }</code></pre>
+      </div>
+      <div class="card">
+        <h4>✨ Pseudo-Elemente (::)</h4>
+        <pre><code><span class="cmt">/* Inhalt VOR dem Element einfügen */</span>
+<span class="sel">.preis::before</span> {
+  <span class="prop">content</span>: <span class="val">"€ "</span>;
+}
+
+<span class="cmt">/* Inhalt NACH dem Element einfügen */</span>
+<span class="sel">.tipp::after</span> {
+  <span class="prop">content</span>: <span class="val">" ★"</span>;
+  <span class="prop">color</span>: <span class="val">gold</span>;
+}
+
+<span class="cmt">/* Ersten Buchstaben stylen */</span>
+<span class="sel">p::first-letter</span> {
+  <span class="prop">font-size</span>: <span class="num">2em</span>;
+  <span class="prop">float</span>: <span class="val">left</span>;
+}
+
+<span class="cmt">/* Platzhalter in Eingabefeldern */</span>
+<span class="sel">input::placeholder</span> { <span class="prop">color</span>: <span class="val">#aaa</span>; }</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑯ MEDIA QUERIES -->
+<section id="media">
+  <div class="section-header">
+    <span class="section-num">16</span>
+    <h2>Media Queries</h2>
+    <span class="subtitle">Responsives Design für alle Bildschirmgrößen</span>
+  </div>
+  <div class="section-body">
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        Media Queries sind wie <strong>Fragen an den Browser</strong>: „Ist der Bildschirm kleiner als 768px?" Je nach Antwort werden andere CSS-Regeln angewendet. So sieht deine Seite auf dem Handy genauso gut aus wie auf dem großen Monitor!
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>📱 Grundstruktur</h4>
+        <pre><code><span class="cmt">/* Grundstile für Mobilgeräte */</span>
+<span class="sel">.container</span> {
+  <span class="prop">width</span>: <span class="num">100%</span>;
+  <span class="prop">padding</span>: <span class="num">1rem</span>;
+}
+
+<span class="cmt">/* Ab 768px → Tablet */</span>
+<span class="kw">@media</span> (<span class="prop">min-width</span>: <span class="num">768px</span>) {
+  <span class="sel">.container</span> {
+    <span class="prop">width</span>: <span class="num">750px</span>;
+    <span class="prop">margin</span>: <span class="num">0</span> <span class="val">auto</span>;
+  }
+}
+
+<span class="cmt">/* Ab 1024px → Desktop */</span>
+<span class="kw">@media</span> (<span class="prop">min-width</span>: <span class="num">1024px</span>) {
+  <span class="sel">.container</span> {
+    <span class="prop">width</span>: <span class="num">980px</span>;
+  }
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>📐 Typische Breakpoints</h4>
+        <table class="prop-table">
+          <tr><th>Gerät</th><th>Breite</th></tr>
+          <tr><td>📱 Kleines Handy</td><td>bis 480px</td></tr>
+          <tr><td>📱 Großes Handy</td><td>bis 640px</td></tr>
+          <tr><td>📟 Tablet</td><td>768px+</td></tr>
+          <tr><td>💻 Desktop</td><td>1024px+</td></tr>
+          <tr><td>🖥️ Großer Monitor</td><td>1280px+</td></tr>
+        </table>
+        <div class="tip" style="margin-top:0.8rem">
+          <span class="tip-icon">💡</span>
+          <div><strong>Empfehlung:</strong> Starte immer mit dem Handy-Design (Mobile First), dann erweitere für größere Bildschirme!</div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>🎨 Weitere Media-Bedingungen</h4>
+        <pre><code><span class="cmt">/* Automatisch Dark Mode aktivieren */</span>
+<span class="kw">@media</span> (<span class="prop">prefers-color-scheme</span>: <span class="val">dark</span>) {
+  <span class="sel">body</span> { <span class="prop">background</span>: <span class="val">#111</span>; }
+}
+
+<span class="cmt">/* Quer- oder Hochformat */</span>
+<span class="kw">@media</span> (<span class="prop">orientation</span>: <span class="val">landscape</span>) {
+  <span class="cmt">/* Querformat */</span>
+}
+
+<span class="cmt">/* Drucken */</span>
+<span class="kw">@media</span> <span class="val">print</span> {
+  <span class="sel">.navigation</span> { <span class="prop">display</span>: <span class="val">none</span>; }
+}
+
+<span class="cmt">/* Nutzer mag keine Animationen */</span>
+<span class="kw">@media</span> (<span class="prop">prefers-reduced-motion</span>: <span class="val">reduce</span>) {
+  <span class="sel">*</span> { <span class="prop">animation</span>: <span class="val">none</span> <span class="kw">!important</span>; }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑰ NÜTZLICHE FUNKTIONEN -->
+<section id="functions">
+  <div class="section-header">
+    <span class="section-num">17</span>
+    <h2>Nützliche CSS-Funktionen</h2>
+    <span class="subtitle">Berechnungen und clevere Werte</span>
+  </div>
+  <div class="section-body">
+    <div class="card-grid">
+      <div class="card">
+        <h4>🧮 calc() — Rechnen in CSS</h4>
+        <p>Du kannst direkt in CSS rechnen — sogar mit gemischten Einheiten!</p>
+        <pre><code><span class="cmt">/* Volle Breite minus Seitenleiste */</span>
+<span class="prop">width</span>: <span class="fn">calc</span>(<span class="num">100%</span> - <span class="num">280px</span>);
+
+<span class="cmt">/* Schriftgröße die mit Viewport wächst */</span>
+<span class="prop">font-size</span>: <span class="fn">calc</span>(<span class="num">1rem</span> + <span class="num">0.5vw</span>);
+
+<span class="cmt">/* Variable mit Berechnung */</span>
+<span class="prop">margin-top</span>: <span class="fn">calc</span>(<span class="fn">var</span>(<span class="prop">--abstand</span>) * <span class="num">2</span>);</code></pre>
+      </div>
+      <div class="card">
+        <h4>📏 min(), max(), clamp()</h4>
+        <p>Diese Funktionen helfen bei responsivem Design ohne Media Queries:</p>
+        <pre><code><span class="cmt">/* Maximal 600px breit, aber nie mehr als 100% */</span>
+<span class="prop">width</span>: <span class="fn">min</span>(<span class="num">600px</span>, <span class="num">100%</span>);
+
+<span class="cmt">/* Mindestens 2rem, nie kleiner */</span>
+<span class="prop">padding</span>: <span class="fn">max</span>(<span class="num">2rem</span>, <span class="num">5%</span>);
+
+<span class="cmt">/* clamp(min, ideal, max) */</span>
+<span class="cmt">/* Schrift: min 14px, ideal 2vw, max 22px */</span>
+<span class="prop">font-size</span>: <span class="fn">clamp</span>(<span class="num">14px</span>, <span class="num">2vw</span>, <span class="num">22px</span>);
+
+<span class="cmt">/* Abstand: min 1rem, ideal 5vw, max 3rem */</span>
+<span class="prop">padding</span>: <span class="fn">clamp</span>(<span class="num">1rem</span>, <span class="num">5vw</span>, <span class="num">3rem</span>);</code></pre>
+      </div>
+      <div class="card">
+        <h4>🎨 Farb-Funktionen</h4>
+        <pre><code><span class="cmt">/* RGB mit Durchsichtigkeit */</span>
+<span class="prop">color</span>: <span class="fn">rgb</span>(<span class="num">255 0 0 / 50%</span>); <span class="cmt">/* 50% transparent */</span>
+
+<span class="cmt">/* HSL — einfache Farbanpassung */</span>
+<span class="prop">color</span>: <span class="fn">hsl</span>(<span class="num">220</span>, <span class="num">80%</span>, <span class="num">50%</span>);
+
+<span class="cmt">/* Linearer Farbverlauf */</span>
+<span class="prop">background</span>: <span class="fn">linear-gradient</span>(<span class="val">to right</span>, <span class="val">#f00</span>, <span class="val">#00f</span>);
+
+<span class="cmt">/* Radialer Farbverlauf (von Mitte nach außen) */</span>
+<span class="prop">background</span>: <span class="fn">radial-gradient</span>(<span class="val">circle</span>, <span class="val">#fff</span>, <span class="val">#000</span>);</code></pre>
+      </div>
+      <div class="card">
+        <h4>🔧 Filter-Effekte</h4>
+        <p>Mit <code>filter</code> kannst du visuelle Effekte auf Elemente anwenden:</p>
+        <pre><code><span class="cmt">/* Unschärfe */</span>
+<span class="prop">filter</span>: <span class="fn">blur</span>(<span class="num">4px</span>);
+
+<span class="cmt">/* Helligkeit (0=schwarz, 2=doppelt so hell) */</span>
+<span class="prop">filter</span>: <span class="fn">brightness</span>(<span class="num">0.8</span>);
+
+<span class="cmt">/* Graustufen */</span>
+<span class="prop">filter</span>: <span class="fn">grayscale</span>(<span class="num">100%</span>);
+
+<span class="cmt">/* Kombination */</span>
+<span class="prop">filter</span>: <span class="fn">brightness</span>(<span class="num">0.9</span>) <span class="fn">contrast</span>(<span class="num">1.1</span>);
+
+<span class="cmt">/* Schatten (auch auf transparente Bilder!) */</span>
+<span class="prop">filter</span>: <span class="fn">drop-shadow</span>(<span class="num">2px 4px 6px</span> <span class="val">black</span>);</code></pre>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🚀</span>
+      <div>
+        <strong>Herzlichen Glückwunsch!</strong> Du hast alle wichtigen CSS-Konzepte durchgearbeitet. Am besten lernst du CSS, indem du einfach anfängst etwas zu bauen — probiere kleine Projekte aus und schau dir an, was die verschiedenen Eigenschaften bewirken. Viel Erfolg!
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- .content -->
+</main>
+
+</body>
+</html>
